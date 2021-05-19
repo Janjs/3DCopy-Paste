@@ -97,25 +97,18 @@ class ViewController: UIViewController, ARSessionDelegate, QLPreviewControllerDa
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        let mesh = MeshResource.generateBox(size: 0.2)
-        let material = SimpleMaterial(color: .blue, roughness: 0.5, isMetallic: true)
-        let modelEntity = ModelEntity(mesh: mesh, materials: [material])
+        let modelEntity = try! ModelEntity.load(named: "toy_robot_vintage")
+        // do something with entity
+        let cameraAnchor = AnchorEntity(.camera)       // ARCamera anchor
         
-        guard let currentFrame = arView.session.currentFrame else  { return }
-        var translation = matrix_identity_float4x4
-        translation.columns.3.z = -0.5
-        let transform = currentFrame.camera.transform
-        let rotation = matrix_float4x4(SCNMatrix4MakeRotation(Float.pi/2, 0, 0, 1))
-        let anchorTransform = matrix_multiply(transform, matrix_multiply(translation, rotation))
-
-        let anchorEntity = AnchorEntity(world: anchorTransform)
-        anchorEntity.addChild(modelEntity)
+        //let mesh = MeshResource.generateBox(width: 0.2, height: 0.2, depth: 0.4)
+        //let material = SimpleMaterial(color: .blue, roughness: 0.5, isMetallic: true)
+        //let modelEntity = ModelEntity(mesh: mesh, materials: [material])
         
-        arView.scene.addAnchor(anchorEntity)
+        cameraAnchor.addChild(modelEntity)
+        arView.scene.addAnchor(cameraAnchor)
         
-        modelEntity.generateCollisionShapes(recursive: true)
-        
-        arView.installGestures([.rotation, .scale], for: modelEntity)
+        modelEntity.transform.translation = [0, 0,-0.5]    // Box offset 1 m
     }
     
     /// - Tag: Export Mesh
