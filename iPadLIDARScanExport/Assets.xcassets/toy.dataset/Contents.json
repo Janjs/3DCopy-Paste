@@ -1,0 +1,13 @@
+{
+  "data" : [
+    {
+      "filename" : "toy_robot_vintage.usdz",
+      "idiom" : "universal",
+      "universal-type-identifier" : "usdz"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
