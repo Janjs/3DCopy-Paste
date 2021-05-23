@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0C26373623E065EB0017A846 /* ViewController+CoachingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26373523E065EA0017A846 /* ViewController+CoachingOverlay.swift */; };
-		169A811C2655503F0087B7C6 /* toy_robot_vintage.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 169A811B2655503F0087B7C6 /* toy_robot_vintage.usdz */; };
 		717F7FEF23F054DC00208378 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 717F7FEE23F054DC00208378 /* README.md */; };
 		E136398023EB064300668585 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E136397F23EB064300668585 /* RoundedButton.swift */; };
 		E1635E1623D5BDFD0031A7D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1635E1523D5BDFD0031A7D8 /* AppDelegate.swift */; };
@@ -21,7 +20,6 @@
 
 /* Begin PBXFileReference section */
 		0C26373523E065EA0017A846 /* ViewController+CoachingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+CoachingOverlay.swift"; sourceTree = "<group>"; };
-		169A811B2655503F0087B7C6 /* toy_robot_vintage.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = toy_robot_vintage.usdz; path = ../../../../Downloads/toy_robot_vintage.usdz; sourceTree = "<group>"; };
 		28811F3E4EB27EC6196B6F5B /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		717F7FEE23F054DC00208378 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AD2D44B524378AF40052D2C4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -92,7 +90,6 @@
 				0C26373523E065EA0017A846 /* ViewController+CoachingOverlay.swift */,
 				E1635E2D23D736E70031A7D8 /* Extensions.swift */,
 				E136397F23EB064300668585 /* RoundedButton.swift */,
-				169A811B2655503F0087B7C6 /* toy_robot_vintage.usdz */,
 				E1635E1B23D5BDFD0031A7D8 /* Main.storyboard */,
 				E1635E1E23D5BDFE0031A7D8 /* Assets.xcassets */,
 				E1635E2023D5BDFE0031A7D8 /* LaunchScreen.storyboard */,
@@ -168,7 +165,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1635E2223D5BDFE0031A7D8 /* LaunchScreen.storyboard in Resources */,
-				169A811C2655503F0087B7C6 /* toy_robot_vintage.usdz in Resources */,
 				E1635E1F23D5BDFE0031A7D8 /* Assets.xcassets in Resources */,
 				717F7FEF23F054DC00208378 /* README.md in Resources */,
 				E1635E1D23D5BDFD0031A7D8 /* Main.storyboard in Resources */,

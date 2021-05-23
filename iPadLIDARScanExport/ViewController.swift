@@ -11,17 +11,18 @@ import ARKit
 import ModelIO
 import MetalKit
 import QuickLook
+import VideoToolbox
 
 
-class ViewController: UIViewController, ARSessionDelegate, QLPreviewControllerDataSource {
+class ViewController: UIViewController, ARSessionDelegate {
     
     @IBOutlet var arView: ARView!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var saveButton: RoundedButton!
-    @IBOutlet weak var previewButton: RoundedButton!
+    @IBOutlet weak var pasteButton: RoundedButton!
+    @IBOutlet weak var hitBoxMarker: UIImageView!
     
     let coachingOverlay = ARCoachingOverlayView()
-    let previewController = QLPreviewController()
     
     /// - Tag: ViewDidLoad
     override func viewDidLoad() {
@@ -32,12 +33,6 @@ class ViewController: UIViewController, ARSessionDelegate, QLPreviewControllerDa
         setupCoachingOverlay()
 
         arView.environment.sceneUnderstanding.options = []
-        
-        // Turn on occlusion from the scene reconstruction's mesh.
-        arView.environment.sceneUnderstanding.options.insert(.occlusion)
-        
-        // Turn on physics for the scene reconstruction's mesh.
-        arView.environment.sceneUnderstanding.options.insert(.physics)
 
         // Display a debug visualization of the mesh.
         arView.debugOptions.insert(.showSceneUnderstanding)
@@ -54,26 +49,20 @@ class ViewController: UIViewController, ARSessionDelegate, QLPreviewControllerDa
 
         configuration.environmentTexturing = .automatic
         arView.session.run(configuration)
+        
+        pasteButton.isEnabled = false
     }
     
-    
     override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewDidAppear(animated)
         // Prevent the screen from being dimmed to avoid interrupting the AR experience.
         UIApplication.shared.isIdleTimerDisabled = true
-        
-        // set quicklook
-        previewController.dataSource = self
     }
     
-    func numberOfPreviewItems(in controller: QLPreviewController) -> Int { return 1 }
-
-    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-        guard let path = Bundle.main.path(forResource: "toy_robot_vintage", ofType: "usdz") else { fatalError("Couldn't find the supported input file.") }
-        
-        print(path)
-        let url = URL(fileURLWithPath: path)
-        return url as QLPreviewItem
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
     }
     
     override var prefersHomeIndicatorAutoHidden: Bool {
@@ -89,123 +78,180 @@ class ViewController: UIViewController, ARSessionDelegate, QLPreviewControllerDa
     @IBAction func resetButtonPressed(_ sender: Any) {
         if let configuration = arView.session.configuration {
             arView.session.run(configuration, options: .resetSceneReconstruction)
+            self.saveButton.isEnabled = true
+            self.pasteButton.isEnabled = false
+            self.arView.debugOptions.insert(.showSceneUnderstanding)
         }
     }
     
     @IBAction func previewButtonPressed(_ sender: Any) {
-        present(previewController, animated: true, completion: nil)
+        if let img = self.arView.session.currentFrame?.capturedImage {
+            let ciimg = CIImage(cvImageBuffer: img)
+            let finImage = UIImage(ciImage: ciimg)
+            uploadImage(paramName: "data", fileName: "screen", image: finImage)
+            
+        }
     }
     
-    @IBAction func saveButtonPressed(_ sender: UIButton) {
-        let modelEntity = try! ModelEntity.load(named: "toy_robot_vintage")
-        // do something with entity
-        let cameraAnchor = AnchorEntity(.camera)       // ARCamera anchor
-        
-        //let mesh = MeshResource.generateBox(width: 0.2, height: 0.2, depth: 0.4)
-        //let material = SimpleMaterial(color: .blue, roughness: 0.5, isMetallic: true)
-        //let modelEntity = ModelEntity(mesh: mesh, materials: [material])
-        
-        cameraAnchor.addChild(modelEntity)
-        arView.scene.addAnchor(cameraAnchor)
-        
-        modelEntity.transform.translation = [0, 0,-0.5]    // Box offset 1 m
+    func uploadImage(paramName: String, fileName: String, image: UIImage) {
+        let url = URL(string: "http://192.168.2.3:8080/cut")
+
+        // generate boundary string using a unique per-app string
+        let boundary = UUID().uuidString
+
+        let session = URLSession.shared
+
+        // Set the URLRequest to POST and to the specified URL
+        var urlRequest = URLRequest(url: url!)
+        urlRequest.httpMethod = "POST"
+
+        // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
+        // And the boundary is also set here
+        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+        var data = Data()
+
+        // Add the image data to the raw http request data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"\(paramName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
+        data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
+        data.append(image.pngData()!)
+
+        data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+
+        // Send a POST request to the URL, with the data we created earlier
+        session.uploadTask(with: urlRequest, from: data, completionHandler: { responseData, response, error in
+            if error == nil {
+                let jsonData = try? JSONSerialization.jsonObject(with: responseData!, options: .allowFragments)
+                if let json = jsonData as? [String: Any] {
+                    print(json)
+                }
+            }
+        }).resume()
     }
     
     /// - Tag: Export Mesh
     /// ***********************************************************************************************
-    /// Exporting the LIDAR scan as OBJ file
-    /*
+    /// Exporting the LIDAR scan as a file
     @IBAction func saveButtonPressed(_ sender: UIButton) {
+        print("Saving is executing...")
+            
+        guard let frame = arView.session.currentFrame
+        else { fatalError("Can't get ARFrame") }
+                
+        guard let device = MTLCreateSystemDefaultDevice()
+        else { fatalError("Can't create MTLDevice") }
         
-        guard let frame = arView.session.currentFrame else {
-            fatalError("Couldn't get the current ARFrame")
-        }
-        
-        // Fetch the default MTLDevice to initialize a MetalKit buffer allocator with
-        guard let device = MTLCreateSystemDefaultDevice() else {
-            fatalError("Failed to get the system's default Metal device!")
-        }
-        
-        // Using the Model I/O framework to export the scan, so we're initialising an MDLAsset object,
-        // which we can export to a file later, with a buffer allocator
         let allocator = MTKMeshBufferAllocator(device: device)
         let asset = MDLAsset(bufferAllocator: allocator)
+        let meshAnchors = frame.anchors.compactMap { $0 as? ARMeshAnchor }
         
-        // Fetch all ARMeshAncors
-        let meshAnchors = frame.anchors.compactMap({ $0 as? ARMeshAnchor })
-        
-        // Convert the geometry of each ARMeshAnchor into a MDLMesh and add it to the MDLAsset
-        for meshAncor in meshAnchors {
-            
-            // Some short handles, otherwise stuff will get pretty long in a few lines
-            let geometry = meshAncor.geometry
+        for ma in meshAnchors {
+            let geometry = ma.geometry
             let vertices = geometry.vertices
             let faces = geometry.faces
-            let verticesPointer = vertices.buffer.contents()
-            let facesPointer = faces.buffer.contents()
+            let vertexPointer = vertices.buffer.contents()
+            let facePointer = faces.buffer.contents()
             
-            // Converting each vertex of the geometry from the local space of their ARMeshAnchor to world space
-            for vertexIndex in 0..<vertices.count {
+            for vtxIndex in 0 ..< vertices.count {
                 
-                // Extracting the current vertex with an extension method provided by Apple in Extensions.swift
-                let vertex = geometry.vertex(at: UInt32(vertexIndex))
-                
-                // Building a transform matrix with only the vertex position
-                // and apply the mesh anchors transform to convert into world space
+                let vertex = geometry.vertex(at: UInt32(vtxIndex))
                 var vertexLocalTransform = matrix_identity_float4x4
-                vertexLocalTransform.columns.3 = SIMD4<Float>(x: vertex.0, y: vertex.1, z: vertex.2, w: 1)
-                let vertexWorldPosition = (meshAncor.transform * vertexLocalTransform).position
                 
-                // Writing the world space vertex back into it's position in the vertex buffer
-                let vertexOffset = vertices.offset + vertices.stride * vertexIndex
+                vertexLocalTransform.columns.3 = SIMD4<Float>(x: vertex.0,
+                                                              y: vertex.1,
+                                                              z: vertex.2,
+                                                              w: 1.0)
+                
+                let vertexWorldTransform = (ma.transform * vertexLocalTransform).position
+                let vertexOffset = vertices.offset + vertices.stride * vtxIndex
                 let componentStride = vertices.stride / 3
-                verticesPointer.storeBytes(of: vertexWorldPosition.x, toByteOffset: vertexOffset, as: Float.self)
-                verticesPointer.storeBytes(of: vertexWorldPosition.y, toByteOffset: vertexOffset + componentStride, as: Float.self)
-                verticesPointer.storeBytes(of: vertexWorldPosition.z, toByteOffset: vertexOffset + (2 * componentStride), as: Float.self)
+                
+                vertexPointer.storeBytes(of: vertexWorldTransform.x,
+                               toByteOffset: vertexOffset,
+                                         as: Float.self)
+                
+                vertexPointer.storeBytes(of: vertexWorldTransform.y,
+                               toByteOffset: vertexOffset + componentStride,
+                                         as: Float.self)
+                
+                vertexPointer.storeBytes(of: vertexWorldTransform.z,
+                               toByteOffset: vertexOffset + (2 * componentStride),
+                                         as: Float.self)
             }
             
-            // Initializing MDLMeshBuffers with the content of the vertex and face MTLBuffers
             let byteCountVertices = vertices.count * vertices.stride
             let byteCountFaces = faces.count * faces.indexCountPerPrimitive * faces.bytesPerIndex
-            let vertexBuffer = allocator.newBuffer(with: Data(bytesNoCopy: verticesPointer, count: byteCountVertices, deallocator: .none), type: .vertex)
-            let indexBuffer = allocator.newBuffer(with: Data(bytesNoCopy: facesPointer, count: byteCountFaces, deallocator: .none), type: .index)
             
-            // Creating a MDLSubMesh with the index buffer and a generic material
+            let vertexBuffer = allocator.newBuffer(with: Data(bytesNoCopy: vertexPointer,
+                                                                    count: byteCountVertices,
+                                                              deallocator: .none), type: .vertex)
+            
+            let indexBuffer = allocator.newBuffer(with: Data(bytesNoCopy: facePointer,
+                                                                   count: byteCountFaces,
+                                                             deallocator: .none), type: .index)
+            
             let indexCount = faces.count * faces.indexCountPerPrimitive
-            let material = MDLMaterial(name: "mat1", scatteringFunction: MDLPhysicallyPlausibleScatteringFunction())
-            let submesh = MDLSubmesh(indexBuffer: indexBuffer, indexCount: indexCount, indexType: .uInt32, geometryType: .triangles, material: material)
+            let material = MDLMaterial(name: "material",
+                         scatteringFunction: MDLPhysicallyPlausibleScatteringFunction())
             
-            // Creating a MDLVertexDescriptor to describe the memory layout of the mesh
+            let submesh = MDLSubmesh(indexBuffer: indexBuffer,
+                                      indexCount: indexCount,
+                                       indexType: .uInt32,
+                                    geometryType: .triangles,
+                                        material: material)
+            
             let vertexFormat = MTKModelIOVertexFormatFromMetal(vertices.format)
-            let vertexDescriptor = MDLVertexDescriptor()
-            vertexDescriptor.attributes[0] = MDLVertexAttribute(name: MDLVertexAttributePosition, format: vertexFormat, offset: 0, bufferIndex: 0)
-            vertexDescriptor.layouts[0] = MDLVertexBufferLayout(stride: meshAncor.geometry.vertices.stride)
             
-            // Finally creating the MDLMesh and adding it to the MDLAsset
-            let mesh = MDLMesh(vertexBuffer: vertexBuffer, vertexCount: meshAncor.geometry.vertices.count, descriptor: vertexDescriptor, submeshes: [submesh])
+            let vertexDescriptor = MDLVertexDescriptor()
+            
+            vertexDescriptor.attributes[0] = MDLVertexAttribute(name: MDLVertexAttributePosition,
+                                                              format: vertexFormat,
+                                                              offset: 0,
+                                                         bufferIndex: 0)
+            
+            vertexDescriptor.layouts[0] = MDLVertexBufferLayout(stride: ma.geometry.vertices.stride)
+            
+            let mesh = MDLMesh(vertexBuffer: vertexBuffer,
+                                vertexCount: ma.geometry.vertices.count,
+                                 descriptor: vertexDescriptor,
+                                  submeshes: [submesh])
+
             asset.add(mesh)
         }
-        
-        // Setting the path to export the OBJ file to
-        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let urlOBJ = documentsPath.appendingPathComponent("scan.obj")
 
-        // Exporting the OBJ file
+        let filePath = FileManager.default.urls(for: .documentDirectory,
+                                                 in: .userDomainMask).first!
+        
+        let urlObj: URL = filePath.appendingPathComponent("model.obj")
+
         if MDLAsset.canExportFileExtension("obj") {
             do {
-                try asset.export(to: urlOBJ)
+                try asset.export(to: urlObj)
                 
-                // Sharing the OBJ file
-                let activityController = UIActivityViewController(activityItems: [urlOBJ], applicationActivities: nil)
-                activityController.popoverPresentationController?.sourceView = sender
-                self.present(activityController, animated: true, completion: nil)
+                let controller = UIActivityViewController(activityItems: [urlObj],
+                                                  applicationActivities: nil)
+                controller.popoverPresentationController?.sourceView = sender
+                self.present(controller, animated: true, completion: nil)
+                controller.completionWithItemsHandler  = { activityType, completed, items, error in
+                    if !completed {
+                        // handle task not completed
+                        return
+                    }
+                    if activityType == .airDrop {
+                        print(" > 3D model shared")
+                        self.pasteButton.isEnabled = true
+                        self.saveButton.isEnabled = false
+                        self.arView.debugOptions.remove(.showSceneUnderstanding)
+                    }
+                }
             } catch let error {
                 fatalError(error.localizedDescription)
             }
         } else {
-            fatalError("Can't export OBJ")
+            fatalError("Can't export USD")
         }
-    }*/
+    }
     /// ***********************************************************************************************
 
     
