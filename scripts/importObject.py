@@ -4,8 +4,8 @@ import time
 import json
 import mathutils
 
-file_path_obj = '/Users/janjimenezserra/Desktop/dissertation/3DCut&Paste/scans/scan.obj'
-file_path_coords = '/Users/janjimenezserra/Desktop/dissertation/3DCut&Paste/scans/coordinates.json'
+file_path_obj = './scans/scan.obj'
+file_path_coords = './scans/coordinates.json'
 
 pasted = False
 def checkPaste():
@@ -18,7 +18,6 @@ def checkPaste():
         # store the current location
         loc = obj_object.location
 
-        '''
         # read coordinates 
         with open(file_path_coords) as json_file:
             coordinates = json.load(json_file)
@@ -28,7 +27,6 @@ def checkPaste():
 
         # adding adjustment values to the property
         obj_object.location = loc + mathutils.Vector((x,y,z))
-        '''
         
         bpy.ops.wm.save_as_mainfile(filepath=bpy.data.filepath)
         pasted = True

@@ -8,6 +8,8 @@
 # Xcode - User files
 xcuserdata/
 
+.vscode
+
 **/*.xcodeproj/project.xcworkspace/*
 !**/*.xcodeproj/project.xcworkspace/xcshareddata
 

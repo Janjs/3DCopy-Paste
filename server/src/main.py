@@ -11,6 +11,7 @@ import pyscreenshot
 import requests
 import logging
 import json
+import cv2
 
 logging.basicConfig(level=logging.INFO)
 
@@ -21,13 +22,14 @@ max_screenshot_size = 400
 app = Flask(__name__)
 CORS(app)
 
+downloads_loc = "####"
 
-# Simple probe.
+# Simple endpoint.
 @app.route('/', methods=['GET'])
 def hello():
     return 'Hello AR Cut Paste!'
 
-# The cut endpoints performs the salience detection / background removal.
+# The paste endpoint performs the salience detection / background removal.
 # And store a copy of the result to be pasted later.
 @app.route('/paste', methods=['POST'])
 def save():
@@ -45,7 +47,7 @@ def save():
         return jsonify({'status:': 'error', 'error': 'empty image'}), 400
 
     # Save debug locally.
-    with open('cut_received.jpg', 'wb') as f:
+    with open('view_received.jpg', 'wb') as f:
         f.write(data)
 
      # Convert string data to PIL Image.
@@ -59,6 +61,7 @@ def save():
     # Take screenshot with pyscreenshot.
     logging.info(' > grabbing screenshot...')
     screen = pyscreenshot.grab()
+
     screen_width, screen_height = screen.size
 
     # Ensure screenshot is under max size.
@@ -70,7 +73,10 @@ def save():
     view_arr = np.array(view.convert('L'))
     screen_arr = np.array(screen.convert('L'))
     # logging.info(f'{view_arr.shape}, {screen_arr.shape}')
-    x, y = screenpoint.project(view_arr, screen_arr, False)
+    x, y, img_debug = screenpoint.project(view_arr, screen_arr, True)
+
+    # Write debug image.
+    cv2.imwrite('feature_matching.png', img_debug)
 
     found = x != -1 and y != -1
 
@@ -89,12 +95,13 @@ def save():
             'y': y
         }
 
-        # write coordinates 
-        with open('/Users/janjimenezserra/Desktop/dissertation/3DCut&Paste/scans/coordinates.json', 'w') as outfile:
+        # write coordinates
+        with open('./scans/coordinates.json', 'w') as outfile:
             json.dump(data, outfile)
 
-        os.replace("/Users/janjimenezserra/Downloads/model.obj", "/Users/janjimenezserra/Desktop/dissertation/3DCut&Paste/scans/scan.obj")
-        
+        os.replace(downloads_loc+"/model.obj",
+                   "./scans/model.obj")
+
     else:
         logging.info('screen not found')
 
