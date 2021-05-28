@@ -1,5 +1,7 @@
 # AR 3D Copy&Paste
 
+Demo of the project showing its functionality: https://youtu.be/B52r1ccVacU	
+
 This projects has three different interacting parts:
 * iOS app: Uses ARKit to extract LiDAR’s information into an OBJ file and exports it with AirDrop.
 * Local server written in Python and Flask: Gets picture from phone's camera and matches it with screenshot of computer, then creates coords.json and moves obj from "Downloads" to "Scans".
