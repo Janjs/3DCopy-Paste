@@ -1,17 +1,8 @@
-# iPad LIDAR Scan OBJ Export
+# iOS Application with ARKit
 
-This project shows how to export an OBJ file of the 3D mesh created by an ARKit 3.5 Application with the iPad Pro (4th generation).
+iOS mobile application written in Swift that uses ARKit to extract LiDAR’s information into an OBJ file. ARKit 3.5 Application with the iPad Pro (4th generation).
 
 It is based on the [Visualising and Interacting with a Reconstructed Scene][1] sample by Apple and leverages the Model I/O framework to convert, assamble and export the mesh.
-
-You can read more about it and our assessment of the iPad Pro LIDAR sensor on our [Medium.com][3] article.
-
-## The magic happens in the [ViewControllers][2]:
-``` swift
-@IBAction func saveButtonPressed(_ sender: UIButton)
-```
-method and is not in any way, shape or form intended to be optimized or parallelized.
-It's purpose is strictly educational :wink:
 
 ## What you need to run it:
 * iOS 13.4+
