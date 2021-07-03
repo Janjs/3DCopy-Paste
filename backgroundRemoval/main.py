@@ -18,13 +18,13 @@ CORS(app)
 
 
 # Simple probe.
-@app.route('/', methods=['GET'])
+@app.route('/removebg', methods=['GET'])
 def hello():
-    return 'Hello U^2-Net!'
+    return {'msg': 'Hello U^2-Net!'}
 
 
 # Route http posts to this method
-@app.route('/', methods=['POST'])
+@app.route('/removebg', methods=['POST'])
 def run():
     start = time.time()
 
@@ -44,7 +44,7 @@ def run():
 
     # Process Image
     res = u2net.run(np.array(img))
-
+    
     # Save to buffer
     buff = io.BytesIO()
     res.save(buff, 'PNG')
@@ -67,7 +67,7 @@ def backgroundRemoval(image_path):
     start = time.time()
 
     # Get original dataset 
-    img = Image.open("./original_dataset/"+image_path)
+    img = Image.open("./test_cases/"+image_path)
 
     # Process Image
     mask = u2net.run(np.array(img)).convert("L")
@@ -76,21 +76,26 @@ def backgroundRemoval(image_path):
     img_bg_removed = naive_cutout(img, mask)
     ## convert to JPG
     #img_bg_removed = img_bg_removed.convert('RGB') 
-    img_bg_removed.save("./output_dataset_png/"+image_path)
+    img_bg_removed.save("./output_dataset_png/"+image_path.split(".")[0]+".png")
 
     # Print stats
     logging.info(f'{image_path} Completed in {time.time() - start:.2f}s')
 
-
-
-
-if __name__ == '__main__':
+def manualRemoval():
     start = time.time()
-    images_paths = os.listdir("./original_dataset")
+    images_paths = os.listdir("./test_cases")
     for image_path in images_paths:
         backgroundRemoval(image_path)
     # Print stats
     logging.info(f'{len(images_paths)} images done! in {time.time() - start:.2f}s')
-    #os.environ['FLASK_ENV'] = 'development'
-    #port = int(os.environ.get('PORT', 8080))
-    #app.run(debug=True, host='0.0.0.0', port=port)
+
+
+
+if __name__ == '__main__':
+    manual = True
+    if manual:
+        manualRemoval()
+    else:
+        os.environ['FLASK_ENV'] = 'development'
+        port = int(os.environ.get('PORT', 8081))
+        app.run(debug=True, host='localhost', port=port)
