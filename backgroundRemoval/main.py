@@ -67,7 +67,7 @@ def backgroundRemoval(image_path):
     start = time.time()
 
     # Get original dataset 
-    img = Image.open("./test_cases/"+image_path)
+    img = Image.open("./original_dataset/"+image_path)
 
     # Process Image
     mask = u2net.run(np.array(img)).convert("L")
@@ -83,7 +83,7 @@ def backgroundRemoval(image_path):
 
 def manualRemoval():
     start = time.time()
-    images_paths = os.listdir("./test_cases")
+    images_paths = os.listdir("./original_dataset")
     for image_path in images_paths:
         backgroundRemoval(image_path)
     # Print stats
