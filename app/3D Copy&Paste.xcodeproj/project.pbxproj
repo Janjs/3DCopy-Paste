@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C26373623E065EB0017A846 /* ViewController+CoachingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26373523E065EA0017A846 /* ViewController+CoachingOverlay.swift */; };
+		16DBBBA226BDE5B700976221 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DBBBA126BDE5B700976221 /* PhotoViewController.swift */; };
+		16DBBBA426BDE70200976221 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DBBBA326BDE70200976221 /* EntryViewController.swift */; };
 		717F7FEF23F054DC00208378 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 717F7FEE23F054DC00208378 /* README.md */; };
 		E136398023EB064300668585 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E136397F23EB064300668585 /* RoundedButton.swift */; };
 		E1635E1623D5BDFD0031A7D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1635E1523D5BDFD0031A7D8 /* AppDelegate.swift */; };
-		E1635E1823D5BDFD0031A7D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1635E1723D5BDFD0031A7D8 /* ViewController.swift */; };
+		E1635E1823D5BDFD0031A7D8 /* LidarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1635E1723D5BDFD0031A7D8 /* LidarViewController.swift */; };
 		E1635E1D23D5BDFD0031A7D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1635E1B23D5BDFD0031A7D8 /* Main.storyboard */; };
 		E1635E1F23D5BDFE0031A7D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1635E1E23D5BDFE0031A7D8 /* Assets.xcassets */; };
 		E1635E2223D5BDFE0031A7D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1635E2023D5BDFE0031A7D8 /* LaunchScreen.storyboard */; };
@@ -19,14 +20,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0C26373523E065EA0017A846 /* ViewController+CoachingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+CoachingOverlay.swift"; sourceTree = "<group>"; };
+		16DBBBA126BDE5B700976221 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		16DBBBA326BDE70200976221 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		28811F3E4EB27EC6196B6F5B /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		717F7FEE23F054DC00208378 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AD2D44B524378AF40052D2C4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E136397F23EB064300668585 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		E1635E1223D5BDFD0031A7D8 /* LIDAR Scan Export.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LIDAR Scan Export.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1635E1523D5BDFD0031A7D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E1635E1723D5BDFD0031A7D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E1635E1723D5BDFD0031A7D8 /* LidarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LidarViewController.swift; sourceTree = "<group>"; };
 		E1635E1C23D5BDFD0031A7D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E1635E1E23D5BDFE0031A7D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1635E2123D5BDFE0031A7D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -86,11 +88,12 @@
 			isa = PBXGroup;
 			children = (
 				E1635E1523D5BDFD0031A7D8 /* AppDelegate.swift */,
-				E1635E1723D5BDFD0031A7D8 /* ViewController.swift */,
-				0C26373523E065EA0017A846 /* ViewController+CoachingOverlay.swift */,
+				E1635E1723D5BDFD0031A7D8 /* LidarViewController.swift */,
 				E1635E2D23D736E70031A7D8 /* Extensions.swift */,
 				E136397F23EB064300668585 /* RoundedButton.swift */,
 				E1635E1B23D5BDFD0031A7D8 /* Main.storyboard */,
+				16DBBBA326BDE70200976221 /* EntryViewController.swift */,
+				16DBBBA126BDE5B700976221 /* PhotoViewController.swift */,
 				E1635E1E23D5BDFE0031A7D8 /* Assets.xcassets */,
 				E1635E2023D5BDFE0031A7D8 /* LaunchScreen.storyboard */,
 				E1635E2323D5BDFE0031A7D8 /* Info.plist */,
@@ -178,11 +181,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1635E1823D5BDFD0031A7D8 /* ViewController.swift in Sources */,
+				E1635E1823D5BDFD0031A7D8 /* LidarViewController.swift in Sources */,
 				E136398023EB064300668585 /* RoundedButton.swift in Sources */,
 				E1635E1623D5BDFD0031A7D8 /* AppDelegate.swift in Sources */,
+				16DBBBA426BDE70200976221 /* EntryViewController.swift in Sources */,
 				E1635E2E23D736E70031A7D8 /* Extensions.swift in Sources */,
-				0C26373623E065EB0017A846 /* ViewController+CoachingOverlay.swift in Sources */,
+				16DBBBA226BDE5B700976221 /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,7 @@ import QuickLook
 import VideoToolbox
 
 
-class ViewController: UIViewController, ARSessionDelegate {
+class LidarViewController: UIViewController, ARSessionDelegate {
     
     @IBOutlet var arView: ARView!
     @IBOutlet weak var resetButton: UIButton!
@@ -22,15 +22,11 @@ class ViewController: UIViewController, ARSessionDelegate {
     @IBOutlet weak var pasteButton: RoundedButton!
     @IBOutlet weak var hitBoxMarker: UIImageView!
     
-    let coachingOverlay = ARCoachingOverlayView()
-    
     /// - Tag: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
         arView.session.delegate = self
-        
-        setupCoachingOverlay()
 
         arView.environment.sceneUnderstanding.options = []
 
@@ -55,23 +51,16 @@ class ViewController: UIViewController, ARSessionDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewDidAppear(animated)
         // Prevent the screen from being dimmed to avoid interrupting the AR experience.
         UIApplication.shared.isIdleTimerDisabled = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
         super.viewWillDisappear(animated)
     }
     
     override var prefersHomeIndicatorAutoHidden: Bool {
-        return true
-    }
-    
-    
-    override var prefersStatusBarHidden: Bool {
         return true
     }
     
