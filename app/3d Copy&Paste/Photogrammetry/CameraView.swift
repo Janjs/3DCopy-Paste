@@ -9,7 +9,7 @@ struct CameraView: View {
     @ObservedObject var model: CameraViewModel
     @State private var showInfo: Bool = false
     
-    let aspectRatio: CGFloat = 4.0 / 3.0
+    let aspectRatio: CGFloat = 3.0 / 3.0
     let previewCornerRadius: CGFloat = 15.0
     
     var body: some View {
@@ -34,7 +34,9 @@ struct CameraView: View {
                                 Image("ObjectReticle")
                                     .resizable()
                                     .scaledToFit()
-                                    .padding(.all))
+                                    .padding(.top)
+                                    .padding(.bottom)
+                                    .padding(.horizontal, 200))
                         
                         Spacer()
                     }
@@ -56,13 +58,13 @@ struct CameraView: View {
             .navigationBarHidden(true)
             .navigationBarTitleDisplayMode(.inline)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
 /// This view displays the image thumbnail, capture button, and capture mode button.
 struct CaptureButtonPanelView: View {
     @ObservedObject var model: CameraViewModel
-    
     /// This property stores the full width of the bar. The view uses this to place items.
     var width: CGFloat
     
