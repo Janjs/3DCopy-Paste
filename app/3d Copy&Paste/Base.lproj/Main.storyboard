@@ -124,7 +124,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="Photogrammetry" backgroundImage="photogrammetry"/>
                                 <connections>
-                                    <segue destination="R19-xe-0sG" kind="show" id="wyP-sA-3AW"/>
+                                    <segue destination="nf9-8W-8ln" kind="show" id="vcA-Sc-PMo"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwo-E9-5nQ">
@@ -152,20 +152,15 @@
             </objects>
             <point key="canvasLocation" x="1250.9765625" y="-655.3440702781844"/>
         </scene>
-        <!--Photogrammetry-->
-        <scene sceneID="JPe-ed-4S5">
+        <!--Wrapper Photo View Controller-->
+        <scene sceneID="hKf-gV-7n4">
             <objects>
-                <viewController id="R19-xe-0sG" customClass="PhotoViewController" customModule="LIDAR_Scan_Export" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ae3-jV-29u">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="weY-7E-tfp"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Photogrammetry" id="lS6-GB-eZp"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ORF-5g-GLv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <hostingController id="nf9-8W-8ln" customClass="WrapperPhotoViewController" customModule="LIDAR_Scan_Export" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Xej-Ie-VbM"/>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZV6-I3-ako" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1654" y="133"/>
+            <point key="canvasLocation" x="2048" y="-672"/>
         </scene>
     </scenes>
     <designables>

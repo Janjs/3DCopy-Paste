@@ -7,7 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		16BDF95626C052820050D68A /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF95526C052810050D68A /* GalleryViewController.swift */; };
+		16BDF95826C055AC0050D68A /* PhotogrammetryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF95726C055AC0050D68A /* PhotogrammetryScreen.swift */; };
+		16BDF95D26C068A40050D68A /* WrapperPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF95C26C068A40050D68A /* WrapperPhotoViewController.swift */; };
+		16BDF96F26C06B570050D68A /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF95E26C06B570050D68A /* CameraView.swift */; };
+		16BDF97026C06B570050D68A /* InfoPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF95F26C06B570050D68A /* InfoPanelView.swift */; };
+		16BDF97126C06B570050D68A /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96026C06B570050D68A /* CameraViewModel.swift */; };
+		16BDF97226C06B570050D68A /* HelpPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96126C06B570050D68A /* HelpPageView.swift */; };
+		16BDF97326C06B570050D68A /* AsyncImageHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96226C06B570050D68A /* AsyncImageHelpers.swift */; };
+		16BDF97526C06B570050D68A /* Capture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96426C06B570050D68A /* Capture.swift */; };
+		16BDF97626C06B570050D68A /* CaptureGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96526C06B570050D68A /* CaptureGalleryView.swift */; };
+		16BDF97726C06B570050D68A /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96626C06B570050D68A /* PhotoCaptureDelegate.swift */; };
+		16BDF97826C06B570050D68A /* CaptureInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96726C06B570050D68A /* CaptureInfo.swift */; };
+		16BDF97926C06B570050D68A /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96826C06B570050D68A /* TimerView.swift */; };
+		16BDF97A26C06B570050D68A /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96926C06B570050D68A /* CameraPreviewView.swift */; };
+		16BDF97B26C06B570050D68A /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96A26C06B570050D68A /* ImageLoader.swift */; };
+		16BDF97C26C06B570050D68A /* TriggerEveryTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96B26C06B570050D68A /* TriggerEveryTimer.swift */; };
+		16BDF97D26C06B570050D68A /* CaptureFolderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96C26C06B570050D68A /* CaptureFolderState.swift */; };
+		16BDF97E26C06B570050D68A /* CaptureFoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96D26C06B570050D68A /* CaptureFoldersView.swift */; };
+		16BDF97F26C06B570050D68A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96E26C06B570050D68A /* ContentView.swift */; };
 		16DBBBA226BDE5B700976221 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DBBBA126BDE5B700976221 /* PhotoViewController.swift */; };
 		16DBBBA426BDE70200976221 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DBBBA326BDE70200976221 /* EntryViewController.swift */; };
 		717F7FEF23F054DC00208378 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 717F7FEE23F054DC00208378 /* README.md */; };
@@ -21,7 +38,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		16BDF95526C052810050D68A /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		16BDF95726C055AC0050D68A /* PhotogrammetryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotogrammetryScreen.swift; sourceTree = "<group>"; };
+		16BDF95C26C068A40050D68A /* WrapperPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperPhotoViewController.swift; sourceTree = "<group>"; };
+		16BDF95E26C06B570050D68A /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		16BDF95F26C06B570050D68A /* InfoPanelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPanelView.swift; sourceTree = "<group>"; };
+		16BDF96026C06B570050D68A /* CameraViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
+		16BDF96126C06B570050D68A /* HelpPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpPageView.swift; sourceTree = "<group>"; };
+		16BDF96226C06B570050D68A /* AsyncImageHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImageHelpers.swift; sourceTree = "<group>"; };
+		16BDF96426C06B570050D68A /* Capture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Capture.swift; sourceTree = "<group>"; };
+		16BDF96526C06B570050D68A /* CaptureGalleryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureGalleryView.swift; sourceTree = "<group>"; };
+		16BDF96626C06B570050D68A /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
+		16BDF96726C06B570050D68A /* CaptureInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureInfo.swift; sourceTree = "<group>"; };
+		16BDF96826C06B570050D68A /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		16BDF96926C06B570050D68A /* CameraPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		16BDF96A26C06B570050D68A /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		16BDF96B26C06B570050D68A /* TriggerEveryTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerEveryTimer.swift; sourceTree = "<group>"; };
+		16BDF96C26C06B570050D68A /* CaptureFolderState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureFolderState.swift; sourceTree = "<group>"; };
+		16BDF96D26C06B570050D68A /* CaptureFoldersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureFoldersView.swift; sourceTree = "<group>"; };
+		16BDF96E26C06B570050D68A /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		16DBBBA126BDE5B700976221 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		16DBBBA326BDE70200976221 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		28811F3E4EB27EC6196B6F5B /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -58,6 +92,30 @@
 			path = LICENSE;
 			sourceTree = "<group>";
 		};
+		16BDF95926C056BE0050D68A /* Photogrammetry */ = {
+			isa = PBXGroup;
+			children = (
+				16BDF96226C06B570050D68A /* AsyncImageHelpers.swift */,
+				16BDF96926C06B570050D68A /* CameraPreviewView.swift */,
+				16BDF95E26C06B570050D68A /* CameraView.swift */,
+				16BDF96026C06B570050D68A /* CameraViewModel.swift */,
+				16BDF96426C06B570050D68A /* Capture.swift */,
+				16BDF96C26C06B570050D68A /* CaptureFolderState.swift */,
+				16BDF96D26C06B570050D68A /* CaptureFoldersView.swift */,
+				16BDF96526C06B570050D68A /* CaptureGalleryView.swift */,
+				16BDF96726C06B570050D68A /* CaptureInfo.swift */,
+				16BDF96E26C06B570050D68A /* ContentView.swift */,
+				16BDF96126C06B570050D68A /* HelpPageView.swift */,
+				16BDF96A26C06B570050D68A /* ImageLoader.swift */,
+				16BDF95F26C06B570050D68A /* InfoPanelView.swift */,
+				16BDF96626C06B570050D68A /* PhotoCaptureDelegate.swift */,
+				16BDF96826C06B570050D68A /* TimerView.swift */,
+				16BDF96B26C06B570050D68A /* TriggerEveryTimer.swift */,
+				16BDF95726C055AC0050D68A /* PhotogrammetryScreen.swift */,
+			);
+			path = Photogrammetry;
+			sourceTree = "<group>";
+		};
 		AD2D44B424378AF40052D2C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,17 +147,18 @@
 		E1635E1423D5BDFD0031A7D8 /* 3d Copy&Paste */ = {
 			isa = PBXGroup;
 			children = (
+				16BDF95C26C068A40050D68A /* WrapperPhotoViewController.swift */,
 				E1635E1523D5BDFD0031A7D8 /* AppDelegate.swift */,
 				E1635E1723D5BDFD0031A7D8 /* LidarViewController.swift */,
 				E1635E2D23D736E70031A7D8 /* Extensions.swift */,
 				E136397F23EB064300668585 /* RoundedButton.swift */,
 				E1635E1B23D5BDFD0031A7D8 /* Main.storyboard */,
-				16BDF95526C052810050D68A /* GalleryViewController.swift */,
 				16DBBBA326BDE70200976221 /* EntryViewController.swift */,
 				16DBBBA126BDE5B700976221 /* PhotoViewController.swift */,
 				E1635E1E23D5BDFE0031A7D8 /* Assets.xcassets */,
 				E1635E2023D5BDFE0031A7D8 /* LaunchScreen.storyboard */,
 				E1635E2323D5BDFE0031A7D8 /* Info.plist */,
+				16BDF95926C056BE0050D68A /* Photogrammetry */,
 			);
 			path = "3d Copy&Paste";
 			sourceTree = "<group>";
@@ -185,12 +244,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1635E1823D5BDFD0031A7D8 /* LidarViewController.swift in Sources */,
-				16BDF95626C052820050D68A /* GalleryViewController.swift in Sources */,
+				16BDF97F26C06B570050D68A /* ContentView.swift in Sources */,
+				16BDF95826C055AC0050D68A /* PhotogrammetryScreen.swift in Sources */,
+				16BDF97D26C06B570050D68A /* CaptureFolderState.swift in Sources */,
+				16BDF97626C06B570050D68A /* CaptureGalleryView.swift in Sources */,
+				16BDF97226C06B570050D68A /* HelpPageView.swift in Sources */,
+				16BDF97526C06B570050D68A /* Capture.swift in Sources */,
+				16BDF95D26C068A40050D68A /* WrapperPhotoViewController.swift in Sources */,
+				16BDF97826C06B570050D68A /* CaptureInfo.swift in Sources */,
+				16BDF97726C06B570050D68A /* PhotoCaptureDelegate.swift in Sources */,
+				16BDF97E26C06B570050D68A /* CaptureFoldersView.swift in Sources */,
+				16BDF97C26C06B570050D68A /* TriggerEveryTimer.swift in Sources */,
+				16BDF96F26C06B570050D68A /* CameraView.swift in Sources */,
 				E136398023EB064300668585 /* RoundedButton.swift in Sources */,
+				16BDF97926C06B570050D68A /* TimerView.swift in Sources */,
 				E1635E1623D5BDFD0031A7D8 /* AppDelegate.swift in Sources */,
+				16BDF97A26C06B570050D68A /* CameraPreviewView.swift in Sources */,
+				16BDF97326C06B570050D68A /* AsyncImageHelpers.swift in Sources */,
+				16BDF97B26C06B570050D68A /* ImageLoader.swift in Sources */,
 				16DBBBA426BDE70200976221 /* EntryViewController.swift in Sources */,
+				16BDF97126C06B570050D68A /* CameraViewModel.swift in Sources */,
 				E1635E2E23D736E70031A7D8 /* Extensions.swift in Sources */,
 				16DBBBA226BDE5B700976221 /* PhotoViewController.swift in Sources */,
+				16BDF97026C06B570050D68A /* InfoPanelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +417,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZMZHK75K6Z;
 				INFOPLIST_FILE = "$(SRCROOT)/3d Copy&Paste/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -363,6 +440,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZMZHK75K6Z;
 				INFOPLIST_FILE = "$(SRCROOT)/3d Copy&Paste/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class EntryViewController: UIViewController {
 
@@ -29,4 +30,14 @@ class EntryViewController: UIViewController {
         
         view.addSubview(stackView)
     }
+    
+    /*
+    @objc func didTapButton() {
+        // SwiftUI interop
+        let vc = UIHostingController(rootView: PhotogrammetryScreen())
+        addChild(vc)
+        vc.view.frame = view.bounds
+        view.addSubview(vc.view)
+        vc.didMove(toParent: self)
+    }*/
 }
