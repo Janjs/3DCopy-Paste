@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16BDF95626C052820050D68A /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF95526C052810050D68A /* GalleryViewController.swift */; };
 		16DBBBA226BDE5B700976221 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DBBBA126BDE5B700976221 /* PhotoViewController.swift */; };
 		16DBBBA426BDE70200976221 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DBBBA326BDE70200976221 /* EntryViewController.swift */; };
 		717F7FEF23F054DC00208378 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 717F7FEE23F054DC00208378 /* README.md */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16BDF95526C052810050D68A /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		16DBBBA126BDE5B700976221 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		16DBBBA326BDE70200976221 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		28811F3E4EB27EC6196B6F5B /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				E1635E2D23D736E70031A7D8 /* Extensions.swift */,
 				E136397F23EB064300668585 /* RoundedButton.swift */,
 				E1635E1B23D5BDFD0031A7D8 /* Main.storyboard */,
+				16BDF95526C052810050D68A /* GalleryViewController.swift */,
 				16DBBBA326BDE70200976221 /* EntryViewController.swift */,
 				16DBBBA126BDE5B700976221 /* PhotoViewController.swift */,
 				E1635E1E23D5BDFE0031A7D8 /* Assets.xcassets */,
@@ -182,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1635E1823D5BDFD0031A7D8 /* LidarViewController.swift in Sources */,
+				16BDF95626C052820050D68A /* GalleryViewController.swift in Sources */,
 				E136398023EB064300668585 /* RoundedButton.swift in Sources */,
 				E1635E1623D5BDFD0031A7D8 /* AppDelegate.swift in Sources */,
 				16DBBBA426BDE70200976221 /* EntryViewController.swift in Sources */,
