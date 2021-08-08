@@ -14,6 +14,8 @@ struct CaptureGalleryView: View {
     
     /// When a thumbnail cell is tapped, this property holds the information about the tapped image.
     @State var zoomedCapture: CaptureInfo? = nil
+    @State var pasteButtonEnabled: Bool = false
+    @State var copyButtonEnabled: Bool = true
     
     /// When this is set to `true`, the app displays a toolbar button to dispays the capture folder.
     @State private var showCaptureFolderView: Bool = false
@@ -53,19 +55,43 @@ struct CaptureGalleryView: View {
             .frame(width: 0, height: 0)
             .disabled(true)
             
-            GeometryReader { geometryReader in
-                ScrollView() {
-                    LazyVGrid(columns: portraitLayout, spacing: columnSpacing) {
-                        ForEach(captureFolderState.captures, id: \.id) { captureInfo in
-                            GalleryCell(captureInfo: captureInfo,
-                                        cellWidth: geometryReader.size.width / 3,
-                                        cellHeight: geometryReader.size.width / 3,
-                                        zoomedCapture: $zoomedCapture)
+            VStack {
+                GeometryReader { geometryReader in
+                    ScrollView() {
+                        LazyVGrid(columns: portraitLayout, spacing: columnSpacing) {
+                            ForEach(captureFolderState.captures, id: \.id) { captureInfo in
+                                GalleryCell(captureInfo: captureInfo,
+                                            cellWidth: geometryReader.size.width / 3,
+                                            cellHeight: geometryReader.size.width / 3,
+                                            zoomedCapture: $zoomedCapture)
+                            }
                         }
                     }
                 }
+                .blur(radius: zoomedCapture != nil ? 20 : 0)
+                
+                HStack {
+                    Spacer()
+                    Button(action: copyButtonPressed) {
+                           Text("Copy")
+                            .padding()
+                            .background(copyButtonEnabled ? Color.blue : Color.gray)
+                            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                            .foregroundColor(Color.white)
+                            .disabled(!copyButtonEnabled)
+                       }
+                    Spacer()
+                    Button(action: pasteButtonPressed) {
+                           Text("Paste")
+                            .padding()
+                            .background(pasteButtonEnabled ? Color.blue : Color.gray)
+                            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                            .foregroundColor(Color.white)
+                            .disabled(!pasteButtonEnabled)
+                       }
+                    Spacer()
+                }
             }
-            .blur(radius: zoomedCapture != nil ? 20 : 0)
             
             if zoomedCapture != nil {
                 ZStack(alignment: .top) {
@@ -106,6 +132,19 @@ struct CaptureGalleryView: View {
                 }
             }
         })
+    }
+    
+    func copyButtonPressed(){
+        copyButtonEnabled = false
+        print("Copy")
+        for capture in captureFolderState.captures {
+            print(capture)
+        }
+        print(copyButtonEnabled)
+    }
+
+    func pasteButtonPressed(){
+        print("Paste")
     }
 }
 

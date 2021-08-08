@@ -1,10 +1,3 @@
-/*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-Helper functions and convenience extensions for system types.
-*/
-
 import ARKit
 import RealityKit
 

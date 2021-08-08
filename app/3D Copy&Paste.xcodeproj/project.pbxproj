@@ -25,7 +25,6 @@
 		16BDF97D26C06B570050D68A /* CaptureFolderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96C26C06B570050D68A /* CaptureFolderState.swift */; };
 		16BDF97E26C06B570050D68A /* CaptureFoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96D26C06B570050D68A /* CaptureFoldersView.swift */; };
 		16BDF97F26C06B570050D68A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDF96E26C06B570050D68A /* ContentView.swift */; };
-		16DBBBA226BDE5B700976221 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DBBBA126BDE5B700976221 /* PhotoViewController.swift */; };
 		16DBBBA426BDE70200976221 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DBBBA326BDE70200976221 /* EntryViewController.swift */; };
 		717F7FEF23F054DC00208378 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 717F7FEE23F054DC00208378 /* README.md */; };
 		E136398023EB064300668585 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E136397F23EB064300668585 /* RoundedButton.swift */; };
@@ -56,13 +55,12 @@
 		16BDF96C26C06B570050D68A /* CaptureFolderState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureFolderState.swift; sourceTree = "<group>"; };
 		16BDF96D26C06B570050D68A /* CaptureFoldersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureFoldersView.swift; sourceTree = "<group>"; };
 		16BDF96E26C06B570050D68A /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		16DBBBA126BDE5B700976221 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		16DBBBA326BDE70200976221 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		28811F3E4EB27EC6196B6F5B /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		717F7FEE23F054DC00208378 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AD2D44B524378AF40052D2C4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E136397F23EB064300668585 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
-		E1635E1223D5BDFD0031A7D8 /* LIDAR Scan Export.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LIDAR Scan Export.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1635E1223D5BDFD0031A7D8 /* 3D Copy&Paste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "3D Copy&Paste.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1635E1523D5BDFD0031A7D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1635E1723D5BDFD0031A7D8 /* LidarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LidarViewController.swift; sourceTree = "<group>"; };
 		E1635E1C23D5BDFD0031A7D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -139,7 +137,7 @@
 		E1635E1323D5BDFD0031A7D8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E1635E1223D5BDFD0031A7D8 /* LIDAR Scan Export.app */,
+				E1635E1223D5BDFD0031A7D8 /* 3D Copy&Paste.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,7 +152,6 @@
 				E136397F23EB064300668585 /* RoundedButton.swift */,
 				E1635E1B23D5BDFD0031A7D8 /* Main.storyboard */,
 				16DBBBA326BDE70200976221 /* EntryViewController.swift */,
-				16DBBBA126BDE5B700976221 /* PhotoViewController.swift */,
 				E1635E1E23D5BDFE0031A7D8 /* Assets.xcassets */,
 				E1635E2023D5BDFE0031A7D8 /* LaunchScreen.storyboard */,
 				E1635E2323D5BDFE0031A7D8 /* Info.plist */,
@@ -188,7 +185,7 @@
 			);
 			name = "3D Copy&Paste";
 			productName = MeshingSample;
-			productReference = E1635E1223D5BDFD0031A7D8 /* LIDAR Scan Export.app */;
+			productReference = E1635E1223D5BDFD0031A7D8 /* 3D Copy&Paste.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -265,7 +262,6 @@
 				16DBBBA426BDE70200976221 /* EntryViewController.swift in Sources */,
 				16BDF97126C06B570050D68A /* CameraViewModel.swift in Sources */,
 				E1635E2E23D736E70031A7D8 /* Extensions.swift in Sources */,
-				16DBBBA226BDE5B700976221 /* PhotoViewController.swift in Sources */,
 				16BDF97026C06B570050D68A /* InfoPanelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,7 +419,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.serrapps;
-				PRODUCT_NAME = "LIDAR Scan Export";
+				PRODUCT_NAME = "3D Copy&Paste";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -446,7 +442,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.serrapps;
-				PRODUCT_NAME = "LIDAR Scan Export";
+				PRODUCT_NAME = "3D Copy&Paste";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;

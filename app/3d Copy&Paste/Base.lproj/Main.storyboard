@@ -12,7 +12,7 @@
         <!--ARView-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="ARView" customClass="LidarViewController" customModule="LIDAR_Scan_Export" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="ARView" customClass="LidarViewController" customModule="_D_Copy_Paste" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pDv-4v-CSH">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -20,7 +20,7 @@
                             <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4Z-bN-ivP">
                                 <rect key="frame" x="0.0" y="50" width="1024" height="1316"/>
                             </arView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYp-l9-Sbs" customClass="RoundedButton" customModule="LIDAR_Scan_Export" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYp-l9-Sbs" customClass="RoundedButton" customModule="_D_Copy_Paste" customModuleProvider="target">
                                 <rect key="frame" x="924" y="1306" width="70" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="d6r-DE-hqM"/>
@@ -30,7 +30,7 @@
                                     <action selector="resetButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ppV-5I-zqo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28S-lI-gMP" userLabel="Save Button" customClass="RoundedButton" customModule="LIDAR_Scan_Export" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28S-lI-gMP" userLabel="Save Button" customClass="RoundedButton" customModule="_D_Copy_Paste" customModuleProvider="target">
                                 <rect key="frame" x="20" y="1306" width="113" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="113" id="MC9-Vw-wQQ" userLabel="width = 100"/>
@@ -40,7 +40,7 @@
                                     <action selector="saveButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l0J-0e-RRw"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Les-YF-8g3" userLabel="Preview Button" customClass="RoundedButton" customModule="LIDAR_Scan_Export" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Les-YF-8g3" userLabel="Preview Button" customClass="RoundedButton" customModule="_D_Copy_Paste" customModuleProvider="target">
                                 <rect key="frame" x="141" y="1306" width="113" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="113" id="INc-AM-feI" userLabel="width = 100"/>
@@ -110,7 +110,7 @@
         <!--3D Cut & Paste-->
         <scene sceneID="VDl-Z7-GO6">
             <objects>
-                <viewController id="IjM-ew-pDS" customClass="EntryViewController" customModule="LIDAR_Scan_Export" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="IjM-ew-pDS" customClass="EntryViewController" customModule="_D_Copy_Paste" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qEN-f8-9OD">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -155,7 +155,7 @@
         <!--Wrapper Photo View Controller-->
         <scene sceneID="hKf-gV-7n4">
             <objects>
-                <hostingController id="nf9-8W-8ln" customClass="WrapperPhotoViewController" customModule="LIDAR_Scan_Export" customModuleProvider="target" sceneMemberID="viewController">
+                <hostingController id="nf9-8W-8ln" customClass="WrapperPhotoViewController" customModule="_D_Copy_Paste" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Xej-Ie-VbM"/>
                 </hostingController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZV6-I3-ako" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

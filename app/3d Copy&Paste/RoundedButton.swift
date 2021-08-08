@@ -1,10 +1,3 @@
-/*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-A custom button that stands out over the camera view.
-*/
-
 import UIKit
 
 @IBDesignable
