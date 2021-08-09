@@ -14,4 +14,4 @@ def hello():
 if __name__ == '__main__':
     os.environ['FLASK_ENV'] = 'development'
     port = int(os.environ.get('PORT', 8080))
-    app.run(host='localhost', port=port)
+    app.run(host='0.0.0.0', port=port)

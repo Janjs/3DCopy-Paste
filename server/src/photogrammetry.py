@@ -7,6 +7,7 @@ import time
 import logging
 import requests
 import u2net
+import subprocess
 
 photogrammetry = Blueprint('photogrammetry',__name__)
 @photogrammetry.route("/photogrammetry")
@@ -17,7 +18,7 @@ def hello():
 @photogrammetry.route('/photogrammetry/removebg', methods=['POST'])
 def run():
     start = time.time()
-
+    
     # Convert string of image data to uint8
     if 'data[]' not in request.files:
         return jsonify({'error': 'missing file param `data`'}), 400
@@ -44,6 +45,9 @@ def run():
         # masking
         img_bg_removed = naive_cutout(img, mask)
         img_bg_removed.save("bg_removed_dataset/"+filename.split(".")[0]+".png")
+    
+    # generate 3D object with Meshroom 
+    generate3Dmodel()
 
     # Print stats
     logging.info(f'Completed in {time.time() - start:.2f}s')
@@ -56,3 +60,7 @@ def naive_cutout(img, mask):
     cutout = Image.composite(img, empty, mask.resize(img.size, Image.LANCZOS))
     return cutout
 
+def generate3Dmodel():
+    bashCmd = r"C:\Users\Usuario\Documents\JAN\GitHub\meshroomApp\meshroom_batch.exe --input C:\Users\Usuario\Documents\JAN\GitHub\3DCopy-Paste\server\bg_removed_dataset --output C:\Users\Usuario\Documents\JAN\GitHub\3DCopy-Paste\scans"
+    process = subprocess.Popen(bashCmd)
+    stoud, stderr = process.communicate()
