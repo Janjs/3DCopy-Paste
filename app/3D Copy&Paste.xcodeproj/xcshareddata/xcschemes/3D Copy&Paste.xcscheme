@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E1635E1123D5BDFD0031A7D8"
-               BuildableName = "LIDAR Scan Export.app"
+               BuildableName = "3D Copy&amp;Paste.app"
                BlueprintName = "3D Copy&amp;Paste"
                ReferencedContainer = "container:3D Copy&amp;Paste.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E1635E1123D5BDFD0031A7D8"
-            BuildableName = "LIDAR Scan Export.app"
+            BuildableName = "3D Copy&amp;Paste.app"
             BlueprintName = "3D Copy&amp;Paste"
             ReferencedContainer = "container:3D Copy&amp;Paste.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E1635E1123D5BDFD0031A7D8"
-            BuildableName = "LIDAR Scan Export.app"
+            BuildableName = "3D Copy&amp;Paste.app"
             BlueprintName = "3D Copy&amp;Paste"
             ReferencedContainer = "container:3D Copy&amp;Paste.xcodeproj">
          </BuildableReference>

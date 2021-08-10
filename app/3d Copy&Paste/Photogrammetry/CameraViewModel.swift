@@ -549,11 +549,14 @@ class CameraViewModel: ObservableObject {
                                                           position: .back) {
             logger.log(">>> Got back dual camera!")
             defaultVideoDevice = dualCameraDevice
-        } else if let dualWideCameraDevice = AVCaptureDevice.default(.builtInDualWideCamera,
-                                                                for: .video,
-                                                                position: .back) {
-            logger.log(">>> Got back dual wide camera!")
-            defaultVideoDevice = dualWideCameraDevice
+        } else if let defaultCameraDevice = AVCaptureDevice.default(for: .video) {
+            logger.log(">>> Got default camera!")
+            defaultVideoDevice = defaultCameraDevice
+       } else if let dualWideCameraDevice = AVCaptureDevice.default(.builtInDualWideCamera,
+                                                                    for: .video,
+                                                                    position: .back) {
+                logger.log(">>> Got back dual wide camera!")
+                defaultVideoDevice = dualWideCameraDevice
        } else if let backWideCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera,
                                                                      for: .video,
                                                                      position: .back) {
