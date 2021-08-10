@@ -545,8 +545,7 @@ class CameraViewModel: ObservableObject {
         var defaultVideoDevice: AVCaptureDevice?
 
         // Specify dual camera to get access to depth data.
-        if let dualCameraDevice = AVCaptureDevice.default(.builtInDualCamera, for: .video,
-                                                          position: .back) {
+        if let dualCameraDevice = AVCaptureDevice.default(for: .video) {
             logger.log(">>> Got back dual camera!")
             defaultVideoDevice = dualCameraDevice
         } else if let defaultCameraDevice = AVCaptureDevice.default(for: .video) {
@@ -563,7 +562,7 @@ class CameraViewModel: ObservableObject {
             logger.log(">>> Can't find a depth-capable camera: using wide back camera!")
             defaultVideoDevice = backWideCameraDevice
         }
-
+        
         guard let videoDevice = defaultVideoDevice else {
             logger.error("Back video device is unavailable.")
             throw SessionSetupError.configurationFailed

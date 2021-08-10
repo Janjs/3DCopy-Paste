@@ -1,6 +1,9 @@
 import Combine
 import Foundation
 import SwiftUI
+import Alamofire
+
+let urlServer = "http://192.168.1.150:8080/photogrammetry"
 
 /// This view displays the contents of a capture directory.
 struct CaptureGalleryView: View {
@@ -16,6 +19,7 @@ struct CaptureGalleryView: View {
     @State var zoomedCapture: CaptureInfo? = nil
     @State var pasteButtonEnabled: Bool = false
     @State var copyButtonEnabled: Bool = true
+    @State private var showingSheet = false
     
     /// When this is set to `true`, the app displays a toolbar button to dispays the capture folder.
     @State private var showCaptureFolderView: Bool = false
@@ -132,14 +136,17 @@ struct CaptureGalleryView: View {
                 }
             }
         })
+        
+        .sheet(isPresented: $showingSheet) {
+            SheetView()
+        }
     }
     
     func copyButtonPressed(){
-        copyButtonEnabled = false
+        //copyButtonEnabled = false
+        showingSheet.toggle()
         print("Copy")
-        for capture in captureFolderState.captures {
-            print(capture)
-        }
+        generate3DModel(captureFolderState: captureFolderState)
         print(copyButtonEnabled)
     }
 
@@ -148,8 +155,8 @@ struct CaptureGalleryView: View {
     }
 }
 
-func uploadImage(paramName: String, fileName: String, image: UIImage) {
-    let url = URL(string: "http://192.168.2.3:8080/paste")
+func generate3DModel(captureFolderState: CaptureFolderState) {
+    let url = URL(string: "\(urlServer)/removebg")
 
     // generate boundary string using a unique per-app string
     let boundary = UUID().uuidString
@@ -166,12 +173,20 @@ func uploadImage(paramName: String, fileName: String, image: UIImage) {
 
     var data = Data()
 
-    // Add the image data to the raw http request data
+    // Add the images data to the raw http request data
     data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-    data.append("Content-Disposition: form-data; name=\"\(paramName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
+    data.append("Content-Disposition: form-data; name=\"\("data[]")\"; filename=\"\(captureFolderState.captureDir?.lastPathComponent ?? "NONE")\"\r\n".data(using: .utf8)!)
     data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
-    data.append(image.pngData()!)
-
+    // Add image data
+    for capture in captureFolderState.captures {
+        do {
+            let image = try ImageLoader.loadImageSynchronously(url: capture.imageUrl)
+            data.append(image.pngData()!)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
 
     // Send a POST request to the URL, with the data we created earlier
@@ -182,7 +197,18 @@ func uploadImage(paramName: String, fileName: String, image: UIImage) {
                 print(json)
             }
         }
-    }).resume()
+    }).resume() 
+}
+
+struct SheetView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        Text("Generating 3D model...")
+        Button("Press to dismiss") {
+            presentationMode.wrappedValue.dismiss()
+        }
+    }
 }
 
 struct NewSessionButtonView: View {

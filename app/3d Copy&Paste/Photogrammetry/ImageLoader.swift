@@ -90,7 +90,7 @@ class ImageLoader {
     }
     
     /// This method synchronously loads the embedded image. If it can't load the image, it returns `nil`.
-    private static func loadImageSynchronously(url: URL) throws -> UIImage {
+    public static func loadImageSynchronously(url: URL) throws -> UIImage {
         guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, nil) else {
             let msg = "Error in CGImageSourceCreateWithURL for \(url.path)"
             logger.error("\(msg)")
