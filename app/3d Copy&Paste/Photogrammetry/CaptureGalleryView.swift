@@ -145,9 +145,8 @@ struct CaptureGalleryView: View {
     func copyButtonPressed(){
         //copyButtonEnabled = false
         showingSheet.toggle()
-        print("Copy")
+        print("Copying")
         generate3DModel(captureFolderState: captureFolderState)
-        print(copyButtonEnabled)
     }
 
     func pasteButtonPressed(){
@@ -156,48 +155,25 @@ struct CaptureGalleryView: View {
 }
 
 func generate3DModel(captureFolderState: CaptureFolderState) {
-    let url = URL(string: "\(urlServer)/removebg")
-
-    // generate boundary string using a unique per-app string
-    let boundary = UUID().uuidString
-
-    let session = URLSession.shared
-
-    // Set the URLRequest to POST and to the specified URL
-    var urlRequest = URLRequest(url: url!)
-    urlRequest.httpMethod = "POST"
-
-    // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
-    // And the boundary is also set here
-    urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-
-    var data = Data()
-
-    // Add the images data to the raw http request data
-    data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-    data.append("Content-Disposition: form-data; name=\"\("data[]")\"; filename=\"\(captureFolderState.captureDir?.lastPathComponent ?? "NONE")\"\r\n".data(using: .utf8)!)
-    data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
-    // Add image data
-    for capture in captureFolderState.captures {
-        do {
-            let image = try ImageLoader.loadImageSynchronously(url: capture.imageUrl)
-            data.append(image.pngData()!)
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
+    let imageToUpload = captureFolderState.captures
+    let url = "\(urlServer)/removebg"
     
-    data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
-
-    // Send a POST request to the URL, with the data we created earlier
-    session.uploadTask(with: urlRequest, from: data, completionHandler: { responseData, response, error in
-        if error == nil {
-            let jsonData = try? JSONSerialization.jsonObject(with: responseData!, options: .allowFragments)
-            if let json = jsonData as? [String: Any] {
-                print(json)
+    AF.upload(multipartFormData: { multipartFormData in
+        let count = imageToUpload.count
+        
+        for i in 0..<count{
+            do {
+                let image = try ImageLoader.loadImageSynchronously(url: imageToUpload[i].imageUrl)
+                multipartFormData.append(image.pngData()!, withName: "data[\(i)]", fileName: "image_n\(i)", mimeType: "image/png")
+            } catch {
+                print(error.localizedDescription)
             }
         }
-    }).resume() 
+        print(multipartFormData)
+    }, to: url)
+    .responseData { response in
+           print(response)
+       }
 }
 
 struct SheetView: View {
