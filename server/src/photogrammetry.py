@@ -18,15 +18,28 @@ def hello():
 @photogrammetry.route('/photogrammetry/removebg', methods=['POST'])
 def run():
     start = time.time()
+
+    fromPhone = False
     
+    if 'data[0]' in request.files:
+        fromPhone = True
+
     # Convert string of image data to uint8
-    if 'data[]' not in request.files:
+    if 'data[]' not in request.files and not(fromPhone):
+        print("hi")
         return jsonify({'error': 'missing file param `data`'}), 400
     
-    images = request.files.getlist("data[]")
-    
+    images = []
+    if fromPhone:
+        for i in range(len(request.files)):
+            images.append(request.files.get(f"data[{i}]"))
+    else: 
+        images = request.files if fromPhone else request.files.getlist("data[]")
+
     if len(images) == 0:
         return jsonify({'error': 'empty image'}), 400
+
+    print(images)
 
     for image in images:
         filename = image.filename
@@ -59,6 +72,9 @@ def naive_cutout(img, mask):
     empty = Image.new("RGBA", (img.size), 0)
     cutout = Image.composite(img, empty, mask.resize(img.size, Image.LANCZOS))
     return cutout
+
+def handleFromPhoneRequest():
+    pass
 
 def generate3Dmodel():
     bashCmd = r"C:\Users\Usuario\Documents\JAN\GitHub\meshroomApp\meshroom_batch.exe --input C:\Users\Usuario\Documents\JAN\GitHub\3DCopy-Paste\server\bg_removed_dataset --output C:\Users\Usuario\Documents\JAN\GitHub\3DCopy-Paste\scans"
