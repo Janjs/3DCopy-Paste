@@ -77,6 +77,7 @@ def handleFromPhoneRequest():
     pass
 
 def generate3Dmodel():
-    bashCmd = r"C:\Users\Usuario\Documents\JAN\GitHub\meshroomApp\meshroom_batch.exe --input C:\Users\Usuario\Documents\JAN\GitHub\3DCopy-Paste\server\bg_removed_dataset --output C:\Users\Usuario\Documents\JAN\GitHub\3DCopy-Paste\scans"
+    # Using meshroom as of now, trying to get a cloud photogrammetry version working for future versions.
+    # bashCmd = r"C:\Users\Usuario\Documents\JAN\GitHub\meshroomApp\meshroom_batch.exe --input C:\Users\Usuario\Documents\JAN\GitHub\3DCopy-Paste\server\bg_removed_dataset --output C:\Users\Usuario\Documents\JAN\GitHub\3DCopy-Paste\scans"
     process = subprocess.Popen(bashCmd)
     stoud, stderr = process.communicate()
