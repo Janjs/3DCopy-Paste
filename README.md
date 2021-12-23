@@ -16,3 +16,4 @@ Also, add the Blender [script][3] into your Blender scene and auto-run it on sta
 [1]:app
 [2]:server
 [3]:scripts/importObject.py
+
