@@ -1,0 +1,3 @@
+[submodule "server/U-2-Net"]
+	path = server/U-2-Net
+	url = https://github.com/xuebinqin/U-2-Net
